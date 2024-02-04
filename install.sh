@@ -43,8 +43,12 @@ cat /etc/timezone
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --beta -u root
 
 
+wget https://raw.githubusercontent.com/majidrezarahnavard/alamut_castle/main/config.json
+
 touch $install_dir/log.txt
 cp $install_dir/config.json /usr/local/etc/xray/config.json
+
+systemctl restart  xray
 
 
 

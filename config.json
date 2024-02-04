@@ -1,0 +1,65 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+          "port": 5895,
+          "protocol": "vless",
+          "settings": {
+            "udp": false,
+            "clients": [
+              {
+                "id": "be1df81d-0a4a-4194-8ecc-ae72d49ebd4b",
+                "alterId": 0,
+                "email": "a@a.aa",
+                "flow": ""
+              }
+            ],
+            "decryption": "none",
+            "allowTransparent": false
+          },
+          "streamSettings": {
+            "network": "ws",
+            "wsSettings": {
+              "path": "/new-path",
+              "headers": {}
+            }
+          }
+        }
+      ],
+    "outbounds": [
+        {
+            "tag": "direct",
+            "protocol": "freedom",
+            "settings": {}
+        },
+        {
+            "tag": "block",
+            "protocol": "blackhole",
+            "settings": {}
+        }
+    ],
+    "routing": {
+        "domainStrategy": "IPOnDemand",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn",
+                    "geoip:ir"
+                ],
+                "outboundTag": "block"
+            },
+            {
+                "type": "field",
+                "domain": [
+                    "geosite:category-porn"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
+    "stats": {},
+    "transport": null
+}
